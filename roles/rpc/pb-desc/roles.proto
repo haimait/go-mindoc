@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package role;
+///pb-desc/types/role/roles.pb.go 和types/role/roles_grpc.pb.go 和包名
+option go_package = "./role";
+
+message IdReq{
+int64 id = 1;
+}
+
+message RolesInfoReply{
+int64 id = 1;
+string name = 2;
+}
+
+//对外暴露的方法包名 如果和go_package同名会在加roleclient做区分 如 roleclient
+service role {
+rpc getRoles(IdReq) returns(RolesInfoReply);
+}

@@ -1,0 +1,59 @@
+syntax = "v1"
+
+info(
+	title: "user登录服务"
+	desc: "user登录服务"
+	author: "haima"
+	email: "228654416@qq.com"
+	date:   "2022-12-31"
+	version: "v1"
+)
+
+import (
+	"dto/user_data.api"
+)
+
+//============================> usercenter v1 <============================
+//no need login
+@server(
+	prefix: api/v1
+	group: user
+)
+
+service user-api {
+	
+	@doc "register"
+	@handler register
+	post /user/register (RegisterReq) returns (RegisterResp)
+	
+	@doc "login"
+	@handler UserLoginHandler
+	post /user/login(UserLoginReq) returns (UserLoginResp)
+	
+}
+
+//need login
+@server(
+	prefix: api/v1
+	group: user
+	jwt: JwtAuth
+)
+service user-api {
+	
+	@doc "获取用户信息"
+	@handler detail
+	get /user/detail (UserInfoReq) returns (UserInfoResp)
+	
+	//	@doc "wechat mini auth"
+	//	@handler wxMiniAuth
+	//	post /user/wxMiniAuth (WXMiniAuthReq) returns (WXMiniAuthResp)
+	
+	@doc "修改用户信息"
+	@handler upDateUser
+	post /user/update (UserUpdateRequest) returns (UserUpdateResponse)
+	
+	@doc "删除用户信息"
+	@handler deleteUser
+	delete /user/delete (UserDeleteRequest) returns (UserDeleteResponse)
+	
+}
