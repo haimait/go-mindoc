@@ -1,4 +1,4 @@
-package core
+package component
 
 import (
 	"errors"
@@ -22,7 +22,7 @@ func LoadConfigurationFile(path string) error {
 	return nil
 }
 
-//GetComponentConfiguration Unmarshal 到传入的 结构体中
+// GetComponentConfiguration Unmarshal 到传入的 结构体中
 func GetComponentConfiguration(name string, conf interface{}) error {
 	if obj, ok := componentConfiguration[name]; ok {
 		marshal, err := yaml.Marshal(obj)

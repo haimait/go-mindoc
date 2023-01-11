@@ -1,4 +1,4 @@
-package core
+package component
 
 var WorkDir string
 var EnvName string

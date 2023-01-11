@@ -1,0 +1,20 @@
+Name: user-api
+Host: 0.0.0.0
+Port: 8081
+Mode: dev
+Timeout: 3600
+
+#jwtAuth
+JwtAuth:
+  AccessSecret: go-mindoc
+  AccessExpire: 360000
+
+DB:
+  DataSource: root:123456@tcp(127.0.0.1:3306)/go_mindoc?charset=utf8mb4&parseTime=True&loc=Local&timeout=1000ms
+
+
+#rpc service
+UserRpcConf:
+  Endpoints:
+    - 127.0.0.1:8080
+  NonBlock: true

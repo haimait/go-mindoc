@@ -10,6 +10,10 @@
 + 前端：vue
 + 硬件：arduino、esp8266
 
+## go-zero官网
+
+https://go-zero.dev/cn/docs/introduction/
+
 ## 安装
 
 1. 搭建 [Golang](https://golang.google.cn/) 环境
@@ -50,12 +54,14 @@ goctl api new admin
 
 ```shell
 goctl api go -api 服务名称.api -dir ../ -style go_zero
-# 1. 生成 user api 服务代码
-goctl api go -api user.api -dir ../ -style go_zero
-# 2. 生成 user api 服务代码
-goctl api go -api admin.api -dir ../ -style go_zero
+# 1. 生成 core api 服务代码
+goctl api go -api core.api -dir ../ -style go_zero
+
 # 3. 生成 user rpc 服务代码
+## 单服务
 goctl rpc protoc user.proto --go_out=./types --go-grpc_out=./types --zrpc_out=../ --style go_zero
+## 多服务
+goctl rpc protoc user.proto --go_out=./types --go-grpc_out=./types --zrpc_out=../ --style go_zero --multiple
 # 4. 生成 device rpc 服务代码
 goctl rpc protoc device.proto --go_out=./types --go-grpc_out=./types --zrpc_out=../ --style go_zero
 ```

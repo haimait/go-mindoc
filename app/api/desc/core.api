@@ -1,11 +1,11 @@
 syntax = "v1"
 
 info(
-	title: "user登录服务"
-	desc: "user登录服务"
+	title: "go-maindoc服务"
+	desc: "go-maindoc服务"
 	author: "haima"
 	email: "whm2416@qq.com"
-	date:   "2022-12-31"
+	date:   "2023-01-11"
 	version: "v1"
 )
 
@@ -14,51 +14,60 @@ import (
 )
 
 //============================> no need login v1 <============================
-//============================> test v1 <============================
-
 
 //============================> usercenter v1 <============================
 @server(
 	prefix: api/v1
-	group: user
+	group: ping
 )
-
-service user-api {
-	
-	@doc "register"
-	@handler register
-	post /user/register (RegisterReq) returns (RegisterResp)
-	
-	@doc "login"
-	@handler UserLoginHandler
-	post /user/login(UserLoginReq) returns (UserLoginResp)
+service core-api {
+	@doc "ping"
+	@handler ping
+	get /ping (PingReq) returns (PingResp)
 	
 }
 
+@server(
+	prefix: api/v1
+	group: user
+)
+service core-api {
+	
+	@doc "register"
+	@handler register
+	post /register (RegisterReq) returns (RegisterResp)
+	
+	@doc "login"
+	@handler LoginHandler
+	post /login(UserLoginReq) returns (UserLoginResp)
+	
+}
 
 //============================>need login <============================
 //============================> usercenter v1 <============================
+
+//need login
 @server(
 	prefix: api/v1
 	group: user
 	jwt: JwtAuth
 )
-service user-api {
+service core-api {
 	
 	@doc "获取用户信息"
-	@handler detail
-	get /user/detail (UserInfoReq) returns (UserInfoResp)
+	@handler userDetail
+	get /user/:id (UserInfoReq) returns (UserInfoResp)
 	
 	//	@doc "wechat mini auth"
 	//	@handler wxMiniAuth
 	//	post /user/wxMiniAuth (WXMiniAuthReq) returns (WXMiniAuthResp)
 	
 	@doc "修改用户信息"
-	@handler upDateUser
-	post /user/update (UserUpdateRequest) returns (UserUpdateResponse)
+	@handler userUpdate
+	put /user (UserUpdateRequest) returns (UserUpdateResponse)
 	
 	@doc "删除用户信息"
-	@handler deleteUser
-	delete /user/delete (UserDeleteRequest) returns (UserDeleteResponse)
+	@handler userDelete
+	delete /user (UserDeleteRequest) returns (UserDeleteResponse)
 	
 }
