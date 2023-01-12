@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-
 	"github.com/haimait/go-mindoc/app/api/internal/config"
 	"github.com/haimait/go-mindoc/app/api/internal/handler"
 	"github.com/haimait/go-mindoc/app/api/internal/svc"
@@ -26,6 +25,9 @@ func main() {
 	ctx := svc.NewServiceContext(c)
 	handler.RegisterHandlers(server, ctx)
 
+	// add static path
+	handler.SaticRegisterHandlers(server, ctx)
+	server.PrintRoutes()
 	fmt.Printf("Starting server at %s:%d...\n", c.Host, c.Port)
 	server.Start()
 }
