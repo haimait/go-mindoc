@@ -54,10 +54,13 @@ func (t *SysUser) CheckUser(name string) (b bool) {
 func (t *SysUser) GetUserInfo() (user SysUser, err error) {
 	table := DB.Table(t.TableName())
 	if t.UserId != 0 {
-		table = table.Where("user_id = ?", t.UserId)
+		table.Where("user_id = ?", t.UserId)
 	}
 	if t.Username != "" {
-		table = table.Where("username LIKE ?", t.Username+"%")
+		table.Where("username LIKE ?", t.Username+"%")
+	}
+	if t.Phone != "" {
+		table.Where("phone = ?", t.Phone)
 	}
 	if err := table.First(&user).Error; err != nil {
 		return user, err
@@ -71,16 +74,21 @@ func (t *SysUser) GetUserList(page PageInfo) (users []SysUser, total int64, err 
 	table := DB.Table(t.TableName()).
 		//Select("user_id,username,nick_name,photo,description,created_at").
 		Scopes(
-			FuncPage(page),
+			//MakeCondition(),
+			Paginate(page),
 		).
 		Order("user_id desc")
+
+	// if Size < 0  return all data
+	if page.Size < 0 {
+		table.Limit(-1).Offset(-1)
+	}
 	if t.UserId > 0 {
 		table = table.Where("user_id = ?", t.UserId)
 	}
 	if t.Username != "" {
 		table = table.Where("username LIKE ?", t.Username+"%")
 	}
-	//err := table.Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&users).
 	err = table.Find(&users).
 		Limit(-1).Offset(-1).Count(&total).Error
 
@@ -97,3 +105,20 @@ func (t *SysUser) DeleteUser(id int) error {
 
 	return err
 }
+
+//func NewUserModel(conn sqlx.SqlConn) SysUser {
+//	return &SysUser{
+//		CachedConn: sqlc.NewConn(conn, c),
+//		table:      "`user`",
+//	}
+//}
+
+type (
+	UserModel interface {
+		GetUserInfo() (user SysUser, err error)
+	}
+	//defaultUserModel struct {
+	//	sqlc.CachedConn
+	//	table string
+	//}
+)

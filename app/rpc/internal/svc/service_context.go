@@ -11,6 +11,10 @@ type ServiceContext struct {
 	Config      config.Config
 	RedisClient *redis.Redis
 	DB          *gorm.DB
+
+	//model
+	//UserModel models.SysUser
+	//UserModel models.UserModel
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
@@ -22,5 +26,7 @@ func NewServiceContext(c config.Config) *ServiceContext {
 			r.Pass = c.Redis.Pass
 		}),
 		DB: models.DB,
+		//UserModel: &models.SysUser{},
+		//UserModel: models.NewSysUserModel(),
 	}
 }

@@ -3,6 +3,7 @@ package userlogic
 import (
 	"context"
 
+	"github.com/jinzhu/copier"
 	"github.com/pkg/errors"
 	"github.com/zeromicro/go-zero/core/logx"
 
@@ -16,6 +17,7 @@ type LoginLogic struct {
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
 	logx.Logger
+	uc models.UserModel
 }
 
 func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginLogic {
@@ -55,21 +57,37 @@ func (l *LoginLogic) Login(in *pb.LoginReq) (*pb.LoginResp, error) {
 	}, nil
 }
 
-func (l *LoginLogic) loginByMobile(AuthKey, password string) (*models.SysUser, error) {
+func (l *LoginLogic) loginByMobile(AuthKey, password string) (u *models.SysUser, err error) {
+	//var userModel1 = models.SysUser{}
+	//userModel1.Username = AuthKey
+	//userModel1.Phone = AuthKey
 
-	//user, err := l.svcCtx.DB.FindOneByMobile(l.ctx, mobile)
-	ub := new(models.SysUser)
-	err := l.svcCtx.DB.Where("phone = ? or username =? AND  status = '2' ",
-		AuthKey, AuthKey).First(ub).Error
+	//var uc models.UserModel
+	//uc = &userModel1
+	//uc.GetUserInfo()
+
+	var resp = models.SysUser{}
+	var userModel = models.SysUser{}
+	userModel.Username = AuthKey
+	userModel.Phone = AuthKey
+	//方法一
+	user, err := userModel.GetUserInfo()
+	//方法二
+	//l.uc = &userModel
+	//user, err := l.uc.GetUserInfo()
+
+	//err := l.svcCtx.DB.Where("phone = ? or username =? AND  status = '2' ",
+	//	AuthKey, AuthKey).First(userModel).Error
 	if err != nil {
 		logx.Error("[DB ERROR] : ", err)
-		return ub, errors.New("用户名或密码不正确")
+		return &resp, errors.New("用户名或密码不正确")
 	}
-	_, err = helper.CompareHashAndPassword(ub.Password, password)
+	_, err = helper.CompareHashAndPassword(user.Password, password)
 	if err != nil {
 		logx.Errorf("user login error, %s", err.Error())
-		return ub, errors.New("用户名或密码不正确")
+		return &resp, errors.New("用户名或密码不正确")
 	}
-	return ub, nil
+	err = copier.Copy(&resp, user)
+	return &resp, nil
 
 }
