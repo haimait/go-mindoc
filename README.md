@@ -57,13 +57,11 @@ goctl api go -api 服务名称.api -dir ../ -style go_zero
 # 1. 生成 core api 服务代码
 goctl api go -api core.api -dir ../ -style go_zero
 
-# 3. 生成 user rpc 服务代码
-## 单服务
-goctl rpc protoc user.proto --go_out=./types --go-grpc_out=./types --zrpc_out=../ --style go_zero
-## 多服务
-goctl rpc protoc user.proto --go_out=./types --go-grpc_out=./types --zrpc_out=../ --style go_zero --multiple
-# 4. 生成 device rpc 服务代码
-goctl rpc protoc device.proto --go_out=./types --go-grpc_out=./types --zrpc_out=../ --style go_zero
+# 2. 生成 user rpc 服务代码
+
+## 多服务 如果需要 单服务，删除 --multiple
+goctl rpc protoc core.proto --go_out=./types --go-grpc_out=./types --zrpc_out=../ --style go_zero --multiple
+
 ```
 
 + 启动服务

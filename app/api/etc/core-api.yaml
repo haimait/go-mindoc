@@ -1,8 +1,14 @@
-Name: user-api
+Name: go-mindoc-api
 Host: 0.0.0.0
 Port: 8081
-Mode: dev
+Mode: dev # 服务环境，dev-开发环境，test-测试环境，pre-预发环境，pro-正式环境
 Timeout: 3600
+
+Log:
+  ServiceName: go-mindoc
+  Mode: console
+  Encoding: plain
+  Level: debug
 
 #jwtAuth
 JwtAuth:

@@ -27,7 +27,10 @@ func main() {
 
 	// add static path
 	handler.SaticRegisterHandlers(server, ctx)
+
+	// print routes
 	server.PrintRoutes()
+
 	fmt.Printf("Starting server at %s:%d...\n", c.Host, c.Port)
 	server.Start()
 }

@@ -1,0 +1,22 @@
+Name: core.rpc
+ListenOn: 0.0.0.0:8080
+#Etcd:
+#  Hosts:
+#  - 127.0.0.1:2379
+#  Key: core.rpc
+
+#jwtAuth
+JwtAuth:
+  AccessSecret: go-mindoc
+
+Cache:
+  - Host: 127.0.0.1:6379
+    Pass:
+
+Redis:
+  Host: 127.0.0.1:6379
+  Type: node  # node / cluster
+  Pass:
+
+DB:
+  DataSource: root:123456@tcp(127.0.0.1:3306)/go_mindoc?charset=utf8mb4&parseTime=True&loc=Local&timeout=1000ms
