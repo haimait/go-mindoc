@@ -1,5 +1,7 @@
 package models
 
+import "errors"
+
 const (
 	UserAuthTypeSystem  string = "system" //平台内部
 	UserAuthTypeSmallWX string = "wxMini" //微信小程序
@@ -50,9 +52,24 @@ func (t *SysUser) CheckUser(name string) (b bool) {
 	return false
 }
 
-// GetUserInfo 查询用户
-func (t *SysUser) GetUserInfo() (user SysUser, err error) {
+// GetUserDetailWithLogin 用户登陆时查询用户信息
+func (t *SysUser) GetUserDetailWithLogin(loginName string) (user SysUser, err error) {
+	if len(loginName) == 0 {
+		err = errors.New("authKey is not empty")
+		return
+	}
 	table := DB.Table(t.TableName())
+	table.Where("username LIKE ?", loginName+"%")
+	table.Or("phone = ?", loginName)
+	if err := table.First(&user).Error; err != nil {
+		return user, err
+	}
+	return user, nil
+}
+
+// GetUserDetail 查询用户
+func (t *SysUser) GetUserDetail() (user SysUser, err error) {
+	table := DB.Debug().Table(t.TableName())
 	if t.UserId != 0 {
 		table.Where("user_id = ?", t.UserId)
 	}
@@ -99,10 +116,13 @@ func (t *SysUser) GetUserList(page PageInfo) (users []SysUser, total int64, err 
 }
 
 // DeleteUser 删除用户
-func (t *SysUser) DeleteUser(id int) error {
+func (t *SysUser) DeleteUser(uid int) (err error) {
+	if uid == 0 {
+		err = errors.New("authKey is not empty")
+		return
+	}
 	var user SysUser
-	err := DB.Table(t.TableName()).Where("user_id = ? ", id).Delete(&user).Error
-
+	err = DB.Table(t.TableName()).Where("user_id = ? ", uid).Delete(&user).Error
 	return err
 }
 
@@ -113,12 +133,12 @@ func (t *SysUser) DeleteUser(id int) error {
 //	}
 //}
 
-type (
-	UserModel interface {
-		GetUserInfo() (user SysUser, err error)
-	}
-	//defaultUserModel struct {
-	//	sqlc.CachedConn
-	//	table string
-	//}
-)
+//type (
+//	UserModel interface {
+//		GetUserDetail() (user SysUser, err error)
+//	}
+//defaultUserModel struct {
+//	sqlc.CachedConn
+//	table string
+//}
+//)

@@ -78,6 +78,13 @@ go run user.go -f etc/user.yaml
 go run device.go -f etc/device.yaml
 ```
 
+
+## #grpc调适
+```shell
+#grpc调适
+grpcui -bind localhost -plaintext 127.0.0.1:8080
+```
+
 ## 适用场景
 
 共享单车、共享充电宝、外卖柜

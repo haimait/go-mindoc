@@ -32,9 +32,9 @@ func (s *UserServer) Login(ctx context.Context, in *pb.LoginReq) (*pb.LoginResp,
 	return l.Login(in)
 }
 
-func (s *UserServer) GetUserInfo(ctx context.Context, in *pb.GetUserInfoReq) (*pb.GetUserInfoResp, error) {
-	l := userlogic.NewGetUserInfoLogic(ctx, s.svcCtx)
-	return l.GetUserInfo(in)
+func (s *UserServer) UserDetail(ctx context.Context, in *pb.UserDetailReq) (*pb.UserDetailResp, error) {
+	l := userlogic.NewUserDetailLogic(ctx, s.svcCtx)
+	return l.UserDetail(in)
 }
 
 func (s *UserServer) UpdateUserInfo(ctx context.Context, in *pb.UpdateUserInfoReq) (*pb.UpdateUserInfoResp, error) {

@@ -40,24 +40,26 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	)
 
 	server.AddRoutes(
-		[]rest.Route{
-			{
-				Method:  http.MethodGet,
-				Path:    "/user/:id",
-				Handler: user.UserDetailHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodPut,
-				Path:    "/user",
-				Handler: user.UserUpdateHandler(serverCtx),
-			},
-			{
-				Method:  http.MethodDelete,
-				Path:    "/user",
-				Handler: user.UserDeleteHandler(serverCtx),
-			},
-		},
-		rest.WithJwt(serverCtx.Config.JwtAuth.AccessSecret),
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.Auth},
+			[]rest.Route{
+				{
+					Method:  http.MethodGet,
+					Path:    "/user/:uid",
+					Handler: user.UserDetailHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPut,
+					Path:    "/user",
+					Handler: user.UserUpdateHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodDelete,
+					Path:    "/user",
+					Handler: user.UserDeleteHandler(serverCtx),
+				},
+			}...,
+		),
 		rest.WithPrefix("/api/v1"),
 	)
 }

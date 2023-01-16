@@ -1,6 +1,6 @@
 Name: go-mindoc-api
 Host: 0.0.0.0
-Port: 8081
+Port: 8080
 Mode: dev # 服务环境，dev-开发环境，test-测试环境，pre-预发环境，pro-正式环境
 Timeout: 3600
 
@@ -12,15 +12,20 @@ Log:
 
 #jwtAuth
 JwtAuth:
-  AccessSecret: go-mindoc
-  AccessExpire: 360000
+  JwtKey: go-mindoc
+  TakenExpire: 3600 #过期时间 单位：秒
+  RefreshTokenExpire: 7200 #过期时间 单位：秒
 
 DB:
   DataSource: root:123456@tcp(127.0.0.1:3306)/go_mindoc?charset=utf8mb4&parseTime=True&loc=Local&timeout=1000ms
 
+Redis:
+  Addr: localhost:6379
+  Password:   # no password set
+  DB: 0 #  use default DB
 
 #rpc service
 UserRpcConf:
   Endpoints:
-    - 127.0.0.1:8080
+    - 127.0.0.1:8081
   NonBlock: true

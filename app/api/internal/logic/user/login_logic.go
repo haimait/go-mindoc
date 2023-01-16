@@ -2,6 +2,9 @@ package user
 
 import (
 	"context"
+	client "github.com/haimait/go-mindoc/app/rpc/client/user"
+	"github.com/haimait/go-mindoc/models"
+	"github.com/jinzhu/copier"
 
 	"github.com/haimait/go-mindoc/app/api/internal/svc"
 	"github.com/haimait/go-mindoc/app/api/internal/types"
@@ -24,7 +27,16 @@ func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginLogic 
 }
 
 func (l *LoginLogic) Login(req *types.UserLoginReq) (resp *types.UserLoginResp, err error) {
-	// todo: add your logic here and delete this line
-
-	return
+	resp = new(types.UserLoginResp)
+	loginResp, err := l.svcCtx.UserRpc.Login(l.ctx, &client.LoginReq{
+		AuthType: models.UserAuthTypeSystem,
+		AuthKey:  req.Username,
+		Password: req.Password,
+	})
+	if err != nil {
+		return nil, err
+	}
+	var res types.UserLoginResp
+	_ = copier.Copy(&res, loginResp)
+	return &res, nil
 }

@@ -9,14 +9,13 @@ type PingResp struct {
 }
 
 type RegisterReq struct {
-	UserInfo
+	UserBasic
 	Password string `json:"password"`
 }
 
 type RegisterResp struct {
 	AccessToken  string `json:"accessToken"`
-	AccessExpire int64  `json:"accessExpire"`
-	RefreshAfter int64  `json:"refreshAfter"`
+	RefreshToken string `json:"accessExpire"`
 }
 
 type UserLoginReq struct {
@@ -26,33 +25,30 @@ type UserLoginReq struct {
 
 type UserLoginResp struct {
 	AccessToken  string `json:"accessToken"`
-	AccessExpire int64  `json:"accessExpire"`
-	RefreshAfter int64  `json:"refreshAfter"`
+	RefreshToken string `json:"accessExpire"`
 }
 
-type UserInfoReq struct {
+type UserDetailReq struct {
+	UserId int64 `json:"userId"`
 }
 
-type UserInfoResp struct {
-	UserInfo UserInfo `json:"userInfo"`
-}
-
-type UserInfo struct {
+type UserDetailResp struct {
 	UserBasic
-	Username
 }
 
 type UserBasic struct {
-	Id       int64  `json:"id"`
-	Nickname string `json:"nickname"`
-	Phone    string `json:"phone"`
-	Sex      int64  `json:"sex"`
-	Avatar   string `json:"avatar"`
-	Email    string `json:"email"`
-}
-
-type Username struct {
+	UserId   int64  `json:"userId"`
 	Username string `json:"username"`
+	NickName string `json:"nickName"`
+	Phone    string `json:"phone"`
+	RoleId   int64  `json:"roleId"`
+	Avatar   string `json:"avatar"`
+	Sex      string `json:"sex"`
+	Email    string `json:"email"`
+	Remark   string `json:"remark"`
+	Status   string `json:"status"`
+	AuthKey  string `json:"authKey"`
+	AuthType string `json:"authType"`
 }
 
 type UserUpdateRequest struct {

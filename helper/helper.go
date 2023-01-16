@@ -6,21 +6,20 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/golang-jwt/jwt/v4"
+	"github.com/haimait/go-mindoc/define"
 	"golang.org/x/crypto/bcrypt"
 	"io/ioutil"
 	"net/http"
 	"strings"
 	"time"
-
-	"github.com/golang-jwt/jwt/v4"
-	"github.com/haimait/go-mindoc/define"
 )
 
 func Md5(s string) string {
 	return fmt.Sprintf("%x", md5.Sum([]byte(s)))
 }
 
-//Encrypt 加密 即使密码一样，每次加密的串也不一样
+// Encrypt 加密 即使密码一样，每次加密的串也不一样
 func Encrypt(password string) string {
 	if password == "" {
 		return ""
@@ -56,7 +55,7 @@ func RFC3339ToNormalTime(rfc3339 string) string {
 	return strings.Split(rfc3339, "T")[0] + " " + strings.Split(rfc3339, "T")[1][:8]
 }
 
-func GenerateToken(id int, username string, second int) (string, error) {
+func GenerateToken(id int, username, jwtKey string, second int64) (string, error) {
 	//claims := make(jwt.MapClaims)
 	//JWT 规定了7个Registered claims
 	//iss (issuer)：签发人
@@ -74,24 +73,24 @@ func GenerateToken(id int, username string, second int) (string, error) {
 	uc := define.UserClaim{
 		Id:       id,
 		Username: username,
-
+		//设置有效期 多少秒内有效
 		RegisteredClaims: jwt.RegisteredClaims{
 			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Second * time.Duration(second))), //过期时间
-			Issuer:    define.JwtKey,                                                           // 签发人
+			Issuer:    jwtKey,                                                                  // 签发人
 		},
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, uc)
-	tokenString, err := token.SignedString([]byte(define.JwtKey))
+	tokenString, err := token.SignedString([]byte(jwtKey))
 	if err != nil {
 		return "", err
 	}
 	return tokenString, nil
 }
 
-func AnalyzeToken(token string) (*define.UserClaim, error) {
+func AnalyzeToken(token, jwtKey string) (*define.UserClaim, error) {
 	uc := new(define.UserClaim)
 	claims, err := jwt.ParseWithClaims(token, uc, func(token *jwt.Token) (interface{}, error) {
-		return []byte(define.JwtKey), nil
+		return []byte(jwtKey), nil
 	})
 	if err != nil {
 		return nil, err

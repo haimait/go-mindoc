@@ -11,7 +11,3 @@ type UserClaim struct {
 	Username string `json:"username"`
 	jwt.RegisteredClaims
 }
-
-var (
-	JwtKey = "go-mindoc"
-)

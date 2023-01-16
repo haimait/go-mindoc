@@ -8,13 +8,12 @@ type (
 
 type (
     RegisterReq {
-        UserInfo
+        UserBasic
         Password string `json:"password"`
     }
     RegisterResp {
         AccessToken  string `json:"accessToken"`
-        AccessExpire int64  `json:"accessExpire"`
-        RefreshAfter int64  `json:"refreshAfter"`
+        RefreshToken string  `json:"accessExpire"`
     }
 )
 
@@ -25,35 +24,34 @@ type (
     }
     UserLoginResp {
         AccessToken  string `json:"accessToken"`
-        AccessExpire int64  `json:"accessExpire"`
-        RefreshAfter int64  `json:"refreshAfter"`
+        RefreshToken string  `json:"accessExpire"`
     }
 )
 
 type (
-    UserInfoReq {
+    UserDetailReq {
+        UserId int64 `json:"userId"`
     }
-    UserInfoResp {
-        UserInfo UserInfo `json:"userInfo"`
+    UserDetailResp {
+        UserBasic
     }
 )
 
 
-type UserInfo {
-    UserBasic
-    Username
-}
 
 type UserBasic {
-    Id       int64  `json:"id"`
-    Nickname string `json:"nickname"`
-    Phone   string `json:"phone"`
-    Sex      int64  `json:"sex"`
-    Avatar   string `json:"avatar"`
-    Email     string `json:"email"`
-}
-type Username {
+    UserId   int64  `json:"userId"`
     Username string `json:"username"`
+    NickName string `json:"nickName"`
+    Phone    string `json:"phone"`
+    RoleId   int64  `json:"roleId"`
+    Avatar   string `json:"avatar"`
+    Sex      string `json:"sex"`
+    Email    string `json:"email"`
+    Remark   string `json:"remark"`
+    Status   string `json:"status"`
+    AuthKey  string `json:"authKey"`
+    AuthType string `json:"authType"`
 }
 
 

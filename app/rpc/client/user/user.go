@@ -13,8 +13,6 @@ import (
 )
 
 type (
-	GetUserInfoReq     = pb.GetUserInfoReq
-	GetUserInfoResp    = pb.GetUserInfoResp
 	LoginReq           = pb.LoginReq
 	LoginResp          = pb.LoginResp
 	RegisterReq        = pb.RegisterReq
@@ -22,11 +20,13 @@ type (
 	UpdateUserInfoReq  = pb.UpdateUserInfoReq
 	UpdateUserInfoResp = pb.UpdateUserInfoResp
 	UserBasic          = pb.UserBasic
+	UserDetailReq      = pb.UserDetailReq
+	UserDetailResp     = pb.UserDetailResp
 
 	User interface {
 		Register(ctx context.Context, in *RegisterReq, opts ...grpc.CallOption) (*RegisterResp, error)
 		Login(ctx context.Context, in *LoginReq, opts ...grpc.CallOption) (*LoginResp, error)
-		GetUserInfo(ctx context.Context, in *GetUserInfoReq, opts ...grpc.CallOption) (*GetUserInfoResp, error)
+		UserDetail(ctx context.Context, in *UserDetailReq, opts ...grpc.CallOption) (*UserDetailResp, error)
 		UpdateUserInfo(ctx context.Context, in *UpdateUserInfoReq, opts ...grpc.CallOption) (*UpdateUserInfoResp, error)
 	}
 
@@ -51,9 +51,9 @@ func (m *defaultUser) Login(ctx context.Context, in *LoginReq, opts ...grpc.Call
 	return client.Login(ctx, in, opts...)
 }
 
-func (m *defaultUser) GetUserInfo(ctx context.Context, in *GetUserInfoReq, opts ...grpc.CallOption) (*GetUserInfoResp, error) {
+func (m *defaultUser) UserDetail(ctx context.Context, in *UserDetailReq, opts ...grpc.CallOption) (*UserDetailResp, error) {
 	client := pb.NewUserClient(m.cli.Conn())
-	return client.GetUserInfo(ctx, in, opts...)
+	return client.UserDetail(ctx, in, opts...)
 }
 
 func (m *defaultUser) UpdateUserInfo(ctx context.Context, in *UpdateUserInfoReq, opts ...grpc.CallOption) (*UpdateUserInfoResp, error) {

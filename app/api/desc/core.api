@@ -1,8 +1,8 @@
 syntax = "v1"
 
 info(
-	title: "go-maindoc服务"
-	desc: "go-maindoc服务"
+	title: "go-mindoc服务"
+	desc: "go-mindoc服务"
 	author: "haima"
 	email: "whm2416@qq.com"
 	date:   "2023-01-11"
@@ -50,13 +50,13 @@ service core-api {
 @server(
 	prefix: api/v1
 	group: user
-	jwt: JwtAuth
+	middleware: Auth
 )
 service core-api {
 	
 	@doc "获取用户信息"
 	@handler userDetail
-	get /user/:id (UserInfoReq) returns (UserInfoResp)
+	get /user/:uid (UserDetailReq) returns (UserDetailResp)
 	
 	//	@doc "wechat mini auth"
 	//	@handler wxMiniAuth

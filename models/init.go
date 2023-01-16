@@ -1,14 +1,18 @@
 package models
 
 import (
+	"log"
+
 	"github.com/haimait/go-mindoc/pkg/component"
 	db "github.com/haimait/go-mindoc/pkg/components/DB"
+
+	"github.com/go-redis/redis/v8"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"log"
 )
 
 var DB *gorm.DB
+var RDB *redis.Client
 
 func NewDB(dsn string) {
 
@@ -28,4 +32,12 @@ func NewDB(dsn string) {
 	//	log.Fatalln("[DB ERROR] : ", err)
 	//}
 	DB = dbClient
+}
+
+func NewRedis(addr, password string, dbNumber int) {
+	RDB = redis.NewClient(&redis.Options{
+		Addr:     addr,
+		Password: password, // no password set
+		DB:       dbNumber, // use default DB
+	})
 }
