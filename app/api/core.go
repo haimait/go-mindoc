@@ -16,13 +16,18 @@ var configFile = flag.String("f", "etc/core-api.yaml", "the config file")
 func main() {
 	flag.Parse()
 
+	// load config file
 	var c config.Config
 	conf.MustLoad(*configFile, &c)
 
+	// new newServer
 	server := rest.MustNewServer(c.RestConf)
 	defer server.Stop()
 
+	// load config file to svc.ServiceContext
 	ctx := svc.NewServiceContext(c)
+
+	// add routes and handles
 	handler.RegisterHandlers(server, ctx)
 
 	// add static path
