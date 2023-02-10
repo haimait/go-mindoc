@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"github.com/haimait/go-mindoc/helper"
+	"go-mindoc/helper"
 	"net/http"
 )
 

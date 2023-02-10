@@ -3,8 +3,8 @@ package logic
 import (
 	"context"
 	"fmt"
-	"github.com/haimait/go-mindoc/app/mqueue/cmd/job/internal/svc"
 	"github.com/hibiken/asynq"
+	"go-mindoc/app/mqueue/cmd/job/internal/svc"
 )
 
 // SettleRecordHandler   shcedule billing to home business

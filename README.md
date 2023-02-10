@@ -104,3 +104,10 @@ grpcui -bind localhost -plaintext 127.0.0.1:8080
 + [ ] 设备服务模块
   + [ ] 设备状态管理
   + [ ] 发送消息
+
+
+
+hibiken/asynqmon
+192.168.0.105:8980
+redis 
+192.168.0.105:6379

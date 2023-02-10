@@ -3,7 +3,7 @@ package logic
 import (
 	"context"
 
-	"github.com/haimait/go-mindoc/app/mqueue/cmd/scheduler/internal/svc"
+	"go-mindoc/app/mqueue/cmd/scheduler/internal/svc"
 )
 
 type MqueueScheduler struct {

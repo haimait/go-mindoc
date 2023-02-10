@@ -5,9 +5,9 @@ import (
 	"flag"
 	"os"
 
-	"github.com/haimait/go-mindoc/app/mqueue/cmd/job/internal/config"
-	"github.com/haimait/go-mindoc/app/mqueue/cmd/job/internal/logic"
-	"github.com/haimait/go-mindoc/app/mqueue/cmd/job/internal/svc"
+	"go-mindoc/app/mqueue/cmd/job/internal/config"
+	"go-mindoc/app/mqueue/cmd/job/internal/logic"
+	"go-mindoc/app/mqueue/cmd/job/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/logx"

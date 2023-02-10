@@ -6,9 +6,9 @@ package server
 import (
 	"context"
 
-	"github.com/haimait/go-mindoc/app/rpc/internal/logic/user"
-	"github.com/haimait/go-mindoc/app/rpc/internal/svc"
-	"github.com/haimait/go-mindoc/app/rpc/pb-desc/types/pb"
+	"go-mindoc/app/rpc/internal/logic/user"
+	"go-mindoc/app/rpc/internal/svc"
+	"go-mindoc/app/rpc/pb-desc/types/pb"
 )
 
 type UserServer struct {

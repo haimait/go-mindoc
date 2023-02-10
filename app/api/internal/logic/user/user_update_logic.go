@@ -3,8 +3,8 @@ package user
 import (
 	"context"
 
-	"github.com/haimait/go-mindoc/app/api/internal/svc"
-	"github.com/haimait/go-mindoc/app/api/internal/types"
+	"go-mindoc/app/api/internal/svc"
+	"go-mindoc/app/api/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

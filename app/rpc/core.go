@@ -4,10 +4,10 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/haimait/go-mindoc/app/rpc/internal/config"
-	userServer "github.com/haimait/go-mindoc/app/rpc/internal/server/user"
-	"github.com/haimait/go-mindoc/app/rpc/internal/svc"
-	"github.com/haimait/go-mindoc/app/rpc/pb-desc/types/pb"
+	"go-mindoc/app/rpc/internal/config"
+	userServer "go-mindoc/app/rpc/internal/server/user"
+	"go-mindoc/app/rpc/internal/svc"
+	"go-mindoc/app/rpc/pb-desc/types/pb"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/service"

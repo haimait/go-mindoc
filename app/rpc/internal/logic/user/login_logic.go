@@ -6,10 +6,10 @@ import (
 	"github.com/pkg/errors"
 	"github.com/zeromicro/go-zero/core/logx"
 
-	"github.com/haimait/go-mindoc/app/rpc/internal/svc"
-	"github.com/haimait/go-mindoc/app/rpc/pb-desc/types/pb"
-	"github.com/haimait/go-mindoc/helper"
-	"github.com/haimait/go-mindoc/models"
+	"go-mindoc/app/rpc/internal/svc"
+	"go-mindoc/app/rpc/pb-desc/types/pb"
+	"go-mindoc/helper"
+	"go-mindoc/models"
 )
 
 type LoginLogic struct {

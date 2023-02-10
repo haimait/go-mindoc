@@ -6,7 +6,7 @@ package client
 import (
 	"context"
 
-	"github.com/haimait/go-mindoc/app/rpc/pb-desc/types/pb"
+	"go-mindoc/app/rpc/pb-desc/types/pb"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"

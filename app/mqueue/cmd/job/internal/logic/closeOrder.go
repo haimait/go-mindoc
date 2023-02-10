@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/haimait/go-mindoc/app/mqueue/cmd/job/internal/svc"
-	"github.com/haimait/go-mindoc/app/mqueue/cmd/job/jobtype"
-	//"github.com/haimait/go-mindoc/common/xerr"
+	"go-mindoc/app/mqueue/cmd/job/internal/svc"
+	"go-mindoc/app/mqueue/cmd/job/jobtype"
+	//"go-mindoc/common/xerr"
 
 	"github.com/hibiken/asynq"
 	"github.com/pkg/errors"

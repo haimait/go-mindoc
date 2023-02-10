@@ -1,6 +1,6 @@
 package main
 
-import "github.com/haimait/go-mindoc/models"
+import "go-mindoc/models"
 
 func main() {
 	models.NewDB("")

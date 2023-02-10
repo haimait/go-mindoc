@@ -20,10 +20,11 @@ Log:
   ServiceName: mqueue-job
   Level: error
 
+
 Redis:
-  Host: redis:6379
+  Host: 192.168.0.105:6379
   Type: node
-  Pass: 123456
+  Pass: "123456"
 
 #WxMiniConf
 #WxMiniConf:

@@ -3,9 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/haimait/go-mindoc/app/api/internal/config"
-	"github.com/haimait/go-mindoc/app/api/internal/handler"
-	"github.com/haimait/go-mindoc/app/api/internal/svc"
+	"go-mindoc/app/api/internal/config"
+	"go-mindoc/app/api/internal/handler"
+	"go-mindoc/app/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/rest"

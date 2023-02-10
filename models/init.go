@@ -3,8 +3,8 @@ package models
 import (
 	"log"
 
-	"github.com/haimait/go-mindoc/pkg/component"
-	db "github.com/haimait/go-mindoc/pkg/components/DB"
+	"go-mindoc/pkg/component"
+	db "go-mindoc/pkg/components/DB"
 
 	"github.com/go-redis/redis/v8"
 	"gorm.io/driver/mysql"

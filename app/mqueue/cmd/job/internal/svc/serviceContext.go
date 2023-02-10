@@ -1,9 +1,9 @@
 package svc
 
 import (
-	"github.com/haimait/go-mindoc/app/mqueue/cmd/job/internal/config"
-	//"github.com/haimait/go-mindoc/app/order/cmd/rpc/order"
-	//"github.com/haimait/go-mindoc/app/usercenter/cmd/rpc/usercenter"
+	"go-mindoc/app/mqueue/cmd/job/internal/config"
+	//"go-mindoc/app/order/cmd/rpc/order"
+	//"go-mindoc/app/usercenter/cmd/rpc/usercenter"
 	"github.com/hibiken/asynq"
 	//"github.com/silenceper/wechat/v2/miniprogram"
 )

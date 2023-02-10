@@ -1,8 +1,8 @@
 package svc
 
 import (
-	"github.com/haimait/go-mindoc/app/rpc/internal/config"
-	"github.com/haimait/go-mindoc/models"
+	"go-mindoc/app/rpc/internal/config"
+	"go-mindoc/models"
 	"gorm.io/gorm"
 )
 

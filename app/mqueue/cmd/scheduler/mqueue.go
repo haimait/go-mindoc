@@ -5,9 +5,9 @@ import (
 	"flag"
 	"os"
 
-	"github.com/haimait/go-mindoc/app/mqueue/cmd/scheduler/internal/config"
-	"github.com/haimait/go-mindoc/app/mqueue/cmd/scheduler/internal/logic"
-	"github.com/haimait/go-mindoc/app/mqueue/cmd/scheduler/internal/svc"
+	"go-mindoc/app/mqueue/cmd/scheduler/internal/config"
+	"go-mindoc/app/mqueue/cmd/scheduler/internal/logic"
+	"go-mindoc/app/mqueue/cmd/scheduler/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/logx"
@@ -33,7 +33,10 @@ func main() {
 	svcContext := svc.NewServiceContext(c)
 	ctx := context.Background()
 
+	// init ctx and all config
 	mqueueScheduler := logic.NewCronScheduler(ctx, svcContext)
+
+	// register job  producer Handle
 	mqueueScheduler.Register()
 
 	if err := svcContext.Scheduler.Run(); err != nil {

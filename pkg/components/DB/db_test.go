@@ -2,7 +2,7 @@ package db
 
 import (
 	"fmt"
-	"github.com/haimait/go-mindoc/pkg/component"
+	"go-mindoc/pkg/component"
 	"testing"
 
 	"github.com/stretchr/testify/assert"

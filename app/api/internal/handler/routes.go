@@ -4,9 +4,9 @@ package handler
 import (
 	"net/http"
 
-	ping "github.com/haimait/go-mindoc/app/api/internal/handler/ping"
-	user "github.com/haimait/go-mindoc/app/api/internal/handler/user"
-	"github.com/haimait/go-mindoc/app/api/internal/svc"
+	ping "go-mindoc/app/api/internal/handler/ping"
+	user "go-mindoc/app/api/internal/handler/user"
+	"go-mindoc/app/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
 )

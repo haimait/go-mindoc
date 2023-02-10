@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+
+  myredis:
+    container_name: myredis
+    image: redis:6.2.5 #6.0.6
+    restart: always
+    ports:
+      - 6379:6379
+    privileged: true
+    environment:
+      # 时区上海
+      TZ: Asia/Shanghai
+    command: redis-server /etc/redis/redis.conf --appendonly yes
+    volumes:
+#      - $PWD/data:/data
+#      - $PWD/conf/redis.conf:/etc/redis/redis.conf
+
+      - $PWD/deploy/docker/redis/data:/data
+      - $PWD/deploy/docker/redis/conf/redis.conf:/etc/redis/redis.conf
+    # networks:
+    #  - myweb
+
+  #asynqmon asynq延迟队列、定时队列的webui
+  asynqmon:
+    image: hibiken/asynqmon:latest
+    container_name: asynqmon
+    ports:
+      - 8980:8080
+    command:
+      - '--redis-addr=192.168.0.105:6379'
+      - '--redis-password=123456'
+      - '--redis-db=0'
+    restart: always
+#    networks:
+#      - looklook_net
+#    depends_on:
+#      - redis

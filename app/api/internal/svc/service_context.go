@@ -1,10 +1,10 @@
 package svc
 
 import (
-	"github.com/haimait/go-mindoc/app/api/internal/config"
-	"github.com/haimait/go-mindoc/app/api/internal/middleware"
-	client "github.com/haimait/go-mindoc/app/rpc/client/user"
-	"github.com/haimait/go-mindoc/models"
+	"go-mindoc/app/api/internal/config"
+	"go-mindoc/app/api/internal/middleware"
+	client "go-mindoc/app/rpc/client/user"
+	"go-mindoc/models"
 
 	"github.com/go-redis/redis/v8"
 	"github.com/zeromicro/go-zero/rest"

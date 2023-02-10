@@ -3,7 +3,7 @@ package svc
 import (
 	"log"
 
-	"github.com/haimait/go-mindoc/app/mqueue/cmd/job/internal/config"
+	"go-mindoc/app/mqueue/cmd/job/internal/config"
 
 	"github.com/hibiken/asynq"
 )

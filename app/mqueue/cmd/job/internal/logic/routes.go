@@ -2,9 +2,9 @@ package logic
 
 import (
 	"context"
-	"github.com/haimait/go-mindoc/app/mqueue/cmd/job/internal/svc"
-	"github.com/haimait/go-mindoc/app/mqueue/cmd/job/jobtype"
 	"github.com/hibiken/asynq"
+	"go-mindoc/app/mqueue/cmd/job/internal/svc"
+	"go-mindoc/app/mqueue/cmd/job/jobtype"
 )
 
 type CronJob struct {

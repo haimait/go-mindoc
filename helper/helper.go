@@ -7,7 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/golang-jwt/jwt/v4"
-	"github.com/haimait/go-mindoc/define"
+	"go-mindoc/define"
 	"golang.org/x/crypto/bcrypt"
 	"io/ioutil"
 	"net/http"

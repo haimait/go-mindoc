@@ -2,12 +2,12 @@ package userlogic
 
 import (
 	"context"
-	client "github.com/haimait/go-mindoc/app/rpc/client/user"
-	"github.com/haimait/go-mindoc/models"
 	"github.com/jinzhu/copier"
+	client "go-mindoc/app/rpc/client/user"
+	"go-mindoc/models"
 
-	"github.com/haimait/go-mindoc/app/rpc/internal/svc"
-	"github.com/haimait/go-mindoc/app/rpc/pb-desc/types/pb"
+	"go-mindoc/app/rpc/internal/svc"
+	"go-mindoc/app/rpc/pb-desc/types/pb"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

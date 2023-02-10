@@ -3,10 +3,10 @@ package user
 import (
 	"net/http"
 
-	"github.com/haimait/go-mindoc/app/api/internal/logic/user"
-	"github.com/haimait/go-mindoc/app/api/internal/svc"
-	"github.com/haimait/go-mindoc/app/api/internal/types"
 	"github.com/zeromicro/go-zero/rest/httpx"
+	"go-mindoc/app/api/internal/logic/user"
+	"go-mindoc/app/api/internal/svc"
+	"go-mindoc/app/api/internal/types"
 )
 
 func LoginHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {

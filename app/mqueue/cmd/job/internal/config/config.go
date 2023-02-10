@@ -7,8 +7,8 @@ import (
 
 type Config struct {
 	service.ServiceConf
-	Redis      redis.RedisConf
-	WxMiniConf WxMiniConf
+	Redis redis.RedisConf
+	//WxMiniConf WxMiniConf
 
 	//SettleRpcConf     zrpc.RpcClientConf
 	//OrderRpcConf      zrpc.RpcClientConf

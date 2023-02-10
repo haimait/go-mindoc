@@ -2,12 +2,12 @@ package user
 
 import (
 	"context"
-	client "github.com/haimait/go-mindoc/app/rpc/client/user"
-	"github.com/haimait/go-mindoc/models"
 	"github.com/jinzhu/copier"
+	client "go-mindoc/app/rpc/client/user"
+	"go-mindoc/models"
 
-	"github.com/haimait/go-mindoc/app/api/internal/svc"
-	"github.com/haimait/go-mindoc/app/api/internal/types"
+	"go-mindoc/app/api/internal/svc"
+	"go-mindoc/app/api/internal/types"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

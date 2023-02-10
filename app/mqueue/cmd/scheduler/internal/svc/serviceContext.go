@@ -3,7 +3,7 @@ package svc
 import (
 	"github.com/hibiken/asynq"
 
-	"github.com/haimait/go-mindoc/app/mqueue/cmd/scheduler/internal/config"
+	"go-mindoc/app/mqueue/cmd/scheduler/internal/config"
 )
 
 type ServiceContext struct {

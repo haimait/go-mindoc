@@ -23,6 +23,6 @@ Log:
 
 
 Redis:
-  Addr: localhost:6379
+  Host: 192.168.0.105:6379
   Type: node
-  Pass:   # no password set
+  Pass: "123456"  # no password set

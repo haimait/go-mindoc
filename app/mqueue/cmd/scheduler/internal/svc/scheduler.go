@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/haimait/go-mindoc/app/mqueue/cmd/scheduler/internal/config"
+	"go-mindoc/app/mqueue/cmd/scheduler/internal/config"
 
 	"github.com/hibiken/asynq"
 )
@@ -20,7 +20,9 @@ func newScheduler(c config.Config) *asynq.Scheduler {
 		}, &asynq.SchedulerOpts{
 			Location: location,
 			PostEnqueueFunc: func(task *asynq.TaskInfo, err error) {
-				fmt.Printf("Scheduler EnqueueErrorHandler <<<<<<<===>>>>> err : %+v , task : %+v", err, task)
+				if err != nil {
+					fmt.Printf("Scheduler EnqueueErrorHandler <<<<<<<===>>>>> err : %+v , task : %+v \n", err, task)
+				}
 			},
 		})
 }

@@ -1,4 +1,4 @@
-module github.com/haimait/go-mindoc
+module go-mindoc
 
 go 1.18
 

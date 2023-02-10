@@ -4,8 +4,8 @@ package handler
 import (
 	"net/http"
 
-	"github.com/haimait/go-mindoc/app/api/internal/svc"
 	"github.com/zeromicro/go-zero/rest"
+	"go-mindoc/app/api/internal/svc"
 )
 
 func SaticRegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
