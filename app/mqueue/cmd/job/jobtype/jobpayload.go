@@ -9,3 +9,8 @@ type DeferCloseHomestayOrderPayload struct {
 //type PaySuccessNotifyUserPayload struct {
 //	Order *model.HomestayOrder
 //}
+
+type DeliveryPayload struct {
+	UserID int
+	TaskID string
+}

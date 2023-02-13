@@ -1,5 +1,7 @@
 package jobtype
 
+const ClusterSettleRecord = "cluster:settle_record:settle"
+
 // ScheduleSettleRecord 结算给商家的结算记录
 const ScheduleSettleRecord = "schedule:settle_record:settle"
 

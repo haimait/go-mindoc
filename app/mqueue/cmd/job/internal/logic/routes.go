@@ -24,8 +24,11 @@ func (l *CronJob) Register() *asynq.ServeMux {
 
 	mux := asynq.NewServeMux()
 
-	//scheduler job
-	mux.Handle(jobtype.ScheduleSettleRecord, NewSettleRecordHandler(l.svcCtx))
+	//ClusterSettleRecord 处理即时时任务Handler
+	mux.Handle(jobtype.ClusterSettleRecord, NewRecordClusterHandler(l.svcCtx))
+
+	//ScheduleSettleRecord scheduler job NewSettleRecordHandler 处理定时任务Handler
+	mux.Handle(jobtype.ScheduleSettleRecord, NewSettleRecordShceduleHandler(l.svcCtx))
 
 	//defer job
 	//mux.Handle(jobtype.DeferCloseHomestayOrder, NewCloseHomestayOrderHandler(l.svcCtx))

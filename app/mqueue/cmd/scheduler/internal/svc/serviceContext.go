@@ -9,12 +9,14 @@ import (
 type ServiceContext struct {
 	Config config.Config
 
-	Scheduler *asynq.Scheduler
+	AsynqScheduler *asynq.Scheduler
+	AsynqClient    *asynq.Client
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
 	return &ServiceContext{
-		Config:    c,
-		Scheduler: newScheduler(c),
+		Config:         c,
+		AsynqScheduler: newScheduler(c),
+		AsynqClient:    newAsynqClient(c),
 	}
 }

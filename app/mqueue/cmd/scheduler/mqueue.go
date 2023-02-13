@@ -37,9 +37,11 @@ func main() {
 	mqueueScheduler := logic.NewCronScheduler(ctx, svcContext)
 
 	// register job  producer Handle
-	mqueueScheduler.Register()
+	mqueueScheduler.RegisterCluster()
+	mqueueScheduler.RegisterScheduler()
 
-	if err := svcContext.Scheduler.Run(); err != nil {
+	// run producer service
+	if err := svcContext.AsynqScheduler.Run(); err != nil {
 		logx.Errorf("!!!MqueueSchedulerErr!!!  run err:%+v", err)
 		os.Exit(1)
 	}
