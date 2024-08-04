@@ -25,9 +25,6 @@ func main() {
 	ctx := svc.NewServiceContext(c)
 	handler.RegisterHandlers(server, ctx)
 
-	// add static path
-	handler.SaticRegisterHandlers(server, ctx)
-
 	// print routes
 	server.PrintRoutes()
 
